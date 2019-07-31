@@ -1,0 +1,36 @@
+  1 #include <stdio.h>
+  2 #include <pthread.h>
+  3 #include <semaphore.h>
+  4
+  5 int sum=0;
+  6
+  7 //sem_t sem1;
+  8
+  9 void* thread_func(void* arg){
+ 10                 for(int i=0; i<10000000; i++){
+ 11 //                      sem_wait(&sem1);
+ 12                         sum = sum-1;
+ 13 //                      sem_post(&sem1);
+ 14                 //      printf("thread1: %d\n", sum);
+ 15                                                                                 }
+ 16 }
+ 17
+ 18 int main(){
+ 19
+ 20 //              sem_init(&sem1, 0, 1);// init before create pthread!
+ 21                 pthread_t thread_1;
+ 22                 pthread_create(&thread_1, NULL, thread_func, NULL);
+ 23
+ 24                 for(int i=0; i<10000000; i++){
+ 25 //                      sem_wait(&sem1);
+ 26                         sum = sum+1;
+ 27 //                      sem_post(&sem1);
+ 28                 //      printf("main: %d\n", sum);
+ 29                 }
+ 30                 pthread_join(thread_1, NULL); // waithing creating thread
+ 31
+ 32                 printf("result: %d\n", sum);
+ 33 //              sem_destroy(&sem1);
+ 34                 return 0;
+ 35
+ 36 }

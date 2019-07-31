@@ -1,0 +1,10 @@
+  1 #include <unistd.h>
+  2 #include <stdio.h>
+  3 #include <stdlib.h>
+  4 int main()
+  5 {
+  6         printf("Running ps with execlp\n");
+  7         execlp("ps","ps","ax",0);
+  8         printf("Done.\n");
+  9         exit(0);
+ 10 }
